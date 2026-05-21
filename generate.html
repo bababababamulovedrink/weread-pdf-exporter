@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>WeRead PDF 生成中…</title>
+  <script src="jspdf.umd.min.js"></script>
+  <script src="html2canvas.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: #1a1a2e;
+      min-height: 100vh;
+    }
+    #statusCard {
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff;
+      border-radius: 16px;
+      padding: 44px 52px;
+      width: 440px;
+      box-shadow: 0 8px 48px rgba(0,0,0,0.3);
+      text-align: center;
+      z-index: 9999;
+    }
+    .icon { font-size: 52px; margin-bottom: 18px; }
+    #cardTitle { font-size: 19px; color: #1a1a2e; margin-bottom: 6px; font-weight: 700; }
+    .sub { font-size: 13px; color: #999; margin-bottom: 28px; line-height: 1.7; }
+    .bar-wrap { background: #f0f0f0; border-radius: 8px; height: 6px; margin-bottom: 10px; overflow: hidden; }
+    .bar { background: linear-gradient(90deg,#4f46e5,#7c3aed); height: 100%; width: 0%; border-radius: 8px; transition: width 0.4s ease; }
+    .log { font-size: 11px; color: #aaa; min-height: 18px; margin-bottom: 0; }
+    .err { color: #dc2626; font-size: 13px; margin-top: 18px; line-height: 1.7; word-break: break-all; background:#fef2f2; padding:12px; border-radius:8px; }
+    .done-msg { color: #059669; font-size: 14px; font-weight: 600; margin-top: 14px; }
+  </style>
+</head>
+<body>
+<div id="statusCard">
+  <div class="icon" id="icon">📖</div>
+  <div id="cardTitle">正在生成 PDF…</div>
+  <p class="sub" id="sub">请勿关闭此页面，完成后将自动下载</p>
+  <div class="bar-wrap"><div class="bar" id="bar"></div></div>
+  <div class="log" id="log">读取数据中…</div>
+  <div id="msg"></div>
+</div>
+
+<script src="generate.js"></script>
+</body>
+</html>

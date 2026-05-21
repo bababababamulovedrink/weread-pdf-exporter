@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "WeRead PDF Exporter",
+  "version": "2.2",
+  "description": "将微信读书网页版书籍导出为 PDF（含图片，直接下载）",
+  "permissions": ["activeTab", "scripting", "storage", "unlimitedStorage", "tabs"],
+  "host_permissions": [
+    "<all_urls>",
+    "https://weread.qq.com/*",
+    "https://*.weread.qq.com/*",
+    "https://*.qq.com/*",
+    "https://*.qpic.cn/*",
+    "https://*.gtimg.cn/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": { "48": "icon48.png" }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://weread.qq.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["jspdf.umd.min.js", "html2canvas.min.js"],
+      "matches": ["https://weread.qq.com/*"]
+    }
+  ]
+}
